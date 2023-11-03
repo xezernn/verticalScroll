@@ -11,18 +11,6 @@
             justify-content: center;
         }
 
-        .thumbnails {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .thumbnails img {
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-        }
-
         .scrollbar {
             width: 1px;
             height: 720px;
@@ -69,7 +57,6 @@
 
 <body>
     <div class="gallery-container">
-        <div class="thumbnails"></div>
         <div class="scrollbar">
             <div class="thumb"></div>
         </div>
@@ -105,16 +92,6 @@
             const index = parseInt(el.dataset.id, 10);
             slideGallery.scrollTo(0, index * slideHeight + marginTop);
         };
-
-        document.querySelector('.thumbnails').innerHTML += [...slides]
-            .map(
-                (slide, i) => `<img src="${slide.querySelector('img').src}" data-id="${i}">`
-            )
-            .join('');
-
-        document.querySelectorAll('.thumbnails img').forEach(el => {
-            el.addEventListener('click', () => scrollToElement(el));
-        });
 
         slideGallery.addEventListener('scroll', e => scrollThumb());
 
